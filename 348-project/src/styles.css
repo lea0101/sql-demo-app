@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+.main-body
+{
+    background: radial-gradient(rgb(42, 19, 53), rgb(52, 73, 80));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+html
+{
+    height: 100%;
+    margin: 0;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,18 @@
+<div>
+    <h4>Schedule Appointments</h4>
+    @if (!scheduling)
+    {
+    <div>
+        <appt-table (editOutlet)="editSelectedAppt($event)"></appt-table>
+        <appt-form></appt-form>
+    </div>
+    }
+    @else
+    {
+    <div>
+        <appt-view [appt]="currentAppointment"></appt-view>
+    </div>
+    }
+
+
+</div>

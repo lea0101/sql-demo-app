@@ -1,0 +1,27 @@
+main
+{
+    background-color: rgba(165, 147, 164, 0.5);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+    width: 75vw;
+}
+
+.main-div
+{
+    padding: 15px;
+}
+h6, h4, main
+{  
+    font-family: "Open Sans", sans-serif;
+}
+
+h4
+{
+    font-size: 25px;
+}
+
+p
+{
+}

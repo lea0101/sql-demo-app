@@ -1,0 +1,105 @@
+<main class="main">
+  <div class="container">
+    <h4>Filter Appointments</h4>
+    <mat-form-field appearance="outline">
+        <mat-label>Filter by Patient</mat-label>
+        <mat-select (selectionChange)="patientChange($event)">
+            @for (patient of patientList; track patient[0])
+            {
+                <mat-option [value]="patient[0]">
+                    {{patient[1]}}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Filter by Physician</mat-label>
+        <mat-select (selectionChange)="physicianChange($event)" placeholder="appt.physician_name">
+            @for (physician of physicianList; track physician[0])
+            {
+                <mat-option [value]="physician[0]">
+                    {{physician[1]}}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Room Number</mat-label>
+        <input matInput placeholder="###" [formControl]="roomIdControl">
+    </mat-form-field>
+
+    <mat-form-field>
+        Start Date
+        <input matInput [matDatepicker]="myDatepicker" [formControl]="startDateControl">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker color="primary"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        End Date
+        <input matInput [matDatepicker]="myDatepicker2" [formControl]="endDateControl">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker2 color="primary"></mat-datepicker>
+    </mat-form-field>
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="generateReport();">Generate Report</button>    
+ </div>
+ @if (reportGenerated)
+ {
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="appt_id">
+        <th mat-header-cell *matHeaderCellDef>
+              Appointment Id 
+          </th>
+        <td mat-cell *matCellDef="let element">
+              {{element.appt_id}} 
+          </td>
+    </ng-container>
+
+    <ng-container matColumnDef="physician_name">
+        <th mat-header-cell *matHeaderCellDef>
+              Physician
+          </th>
+        <td mat-cell *matCellDef="let element"> 
+              {{ element.physician_name }} 
+          </td>
+    </ng-container>
+
+    <ng-container matColumnDef="patient_name">
+        <th mat-header-cell *matHeaderCellDef>
+              Patient 
+          </th>
+        <td mat-cell *matCellDef="let element">
+              {{ element.patient_name }}
+          </td>
+    </ng-container>
+
+    <ng-container matColumnDef="room_id">
+        <th mat-header-cell *matHeaderCellDef>
+              Room Number 
+          </th>
+        <td mat-cell *matCellDef="let element"> 
+              {{ element.room_id }}
+          </td>
+    </ng-container>
+
+    <ng-container matColumnDef="appt_date">
+        <th mat-header-cell *matHeaderCellDef>
+              Appointment Date 
+          </th>
+        <td mat-cell *matCellDef="let element"> 
+              {{ element.appt_date }}
+          </td>
+    </ng-container>
+
+    <ng-container matColumnDef="purpose">
+        <th mat-header-cell *matHeaderCellDef>
+                Purpose
+          </th>
+        <td mat-cell *matCellDef="let element"> 
+              {{ element.purpose }}
+          </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+ }
+</main>
