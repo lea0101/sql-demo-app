@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "WELCOME STINKY" });
+  res.json({ message: "Hello world!" });
 });
 
 app.get("/api/patients", (req, res) => {  
@@ -75,6 +75,7 @@ const { getPhysicianNamesAndIds } = require("./app/controllers/physicians.contro
 db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
+    db.sequelize.query(`SHOW TABLES;`).then(value => console.log(value));
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);

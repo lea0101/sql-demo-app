@@ -1,11 +1,13 @@
-
-
-<main class="main">
-  <div class="main-div">
-    <h4>Welcome to the hopital</h4>
-
-<button type="button" class="btn btn-primary-outline pull-  right" (click)="goToAppointments();">View/Edit Appointments</button>    
-<button type="button" class="btn btn-primary-outline pull-  right" (click)="goToReports();">Advanced Filtering</button>    
-    </div>
-    <router-outlet></router-outlet>
-</main>
+<div class="container">
+  <mat-card class="content-box">
+    <mat-card class="left-column">
+      <mat-card-title>Welcome to Hospital Appointment Scheduler</mat-card-title>
+      <button mat-raised-button (click)="goToAppointments()">View Appointments</button>
+      <button mat-raised-button (click)="goToReports()">Advanced Filtering</button>
+    </mat-card>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-card class="right-column">
+      <router-outlet></router-outlet>
+    </mat-card>
+  </mat-card>
+</div>

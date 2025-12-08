@@ -1,0 +1,62 @@
+
+.container
+{
+    margin-left: 8px;
+    margin-bottom: 20px;
+    width: 80vw;  
+    display: block;
+    overflow:scroll;
+}
+
+.subcontainer
+{
+    display: flex;
+    width: 80vw ; 
+    overflow: scroll;
+}
+
+.form-f
+{
+    margin-left: 20px;
+}
+
+.cal
+{
+    max-width: 212px;
+}
+mat-card-title
+{
+    margin-bottom: 20px;
+}
+
+button
+{
+    margin-left: 20px;  
+}
+/* mat-form-field
+{
+    max-width: 200px;
+    max-height: 0px;
+    overflow: visible;
+} */
+/* 
+.mat-mdc-form-field-infix
+{
+    font-size: 10px;
+    overflow: visible;
+    max-height: 10px;
+} */
+
+
+.header-cell
+{
+}
+
+
+th.mat-header-cell,
+td.mat-cell {
+    text-align: left;
+    padding: 2px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}

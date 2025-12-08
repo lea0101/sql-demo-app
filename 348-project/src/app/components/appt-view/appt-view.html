@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-form-field apppearance="outline">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Select Patient</mat-label>
         <mat-select [(value)]="selectedPatient" (selectionChange)="patientChange($event)">
             @for (patient of patientList; track patient[0])
@@ -10,7 +10,7 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field apppearance="outline">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Select Physician</mat-label>
         <mat-select [(value)]="selectedPhysician" (selectionChange)="physicianChange($event)" placeholder="appt.physician_name">
             @for (physician of physicianList; track physician[0])
@@ -21,18 +21,18 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Room Number</mat-label>
         <input matInput placeholder="###" [formControl]="roomIdControl">
     </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="form-f">
         <mat-label>Appointment Reason</mat-label>
         <input matInput placeholder="appt.purpose" [formControl]="purposeControl">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="form-f cal">
         <input matInput [matDatepicker]="myDatepicker" [formControl]="dateControl" placeholder="appt.appt_date">
         <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker color="primary"></mat-datepicker>
     </mat-form-field>
-    <button type="button" class="btn btn-primary-outline pull-right" (click)="updateAppt();">Update</button>    
+    <button mat-raised-button type="button" class="btn btn-primary-outline pull-right" (click)="updateAppt();">Update</button>    
 </div>

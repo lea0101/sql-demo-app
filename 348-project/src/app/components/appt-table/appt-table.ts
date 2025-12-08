@@ -1,6 +1,5 @@
 import { Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentService } from '../../services/appointments.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -8,13 +7,12 @@ import { Appointment } from '../../models/db.model';
 
 @Component({
   selector: 'appt-table',
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [MatTableModule],
   templateUrl: './appt-table.html',
   styleUrl: './appt-table.css',
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ApptTable implements OnInit {
-   @ViewChild(MatPaginator) paginator: MatPaginator;
     dataSource: MatTableDataSource<any>;
     
     http = inject(HttpClient);
@@ -22,8 +20,6 @@ export class ApptTable implements OnInit {
     @Output() editOutlet: EventEmitter<any> = new EventEmitter();
     @Output() deleteOutlet: EventEmitter<any> = new EventEmitter();
 
-    pageSize = 10;
-    pageSizeOptions = [10, 50, 100];
     displayedColumns = ['appt_id', 'physician_name', 'patient_name', 'room_id', 'appt_date', 'purpose', 'edit-appt', 'del-appt'];
 
     constructor() { }
@@ -39,7 +35,6 @@ export class ApptTable implements OnInit {
         {
           this.valToAppts(value)
           this.dataSource = new MatTableDataSource(value);
-          this.dataSource.paginator = this.paginator;
         }
       );
     }
@@ -61,5 +56,18 @@ export class ApptTable implements OnInit {
 
     deleteAppt(value: any): void {
       this.apptService.delete(value.appt_id).subscribe();
+    }
+
+    parseDate(value: any)
+    {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      var date = new Date(value);
+      // return date.toDateString();
+      return date.toLocaleString("en-US").substring(0, 10).replaceAll(",", "");
     }
 }

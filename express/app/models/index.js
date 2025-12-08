@@ -3,6 +3,7 @@ const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
+  port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
 
@@ -19,6 +20,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.appointments = require("./appointment.model.js")(sequelize, Sequelize);
 db.patients = require("./patient.model.js")(sequelize, Sequelize);
 db.physicians = require("./physician.model.js")(sequelize, Sequelize);
 db.rooms = require("./room.model.js")(sequelize, Sequelize);

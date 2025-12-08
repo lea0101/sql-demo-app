@@ -1,17 +1,18 @@
-<div>
+<div class="main-content">
     <h4>Schedule Appointments</h4>
     @if (!scheduling)
     {
-    <div>
-        <appt-table (editOutlet)="editSelectedAppt($event)"></appt-table>
-        <appt-form></appt-form>
-    </div>
+        <mat-card class="child-card">
+            <appt-table (editOutlet)="editSelectedAppt($event)"></appt-table>
+        </mat-card>
+        <mat-card class="child-card">
+            <appt-form></appt-form>
+        </mat-card>
     }
     @else
     {
-    <div>
+        <button mat-raised-button (click)="goBack()">Back</button>
         <appt-view [appt]="currentAppointment"></appt-view>
-    </div>
     }
 
 

@@ -1,0 +1,13 @@
+.main-content
+{
+    max-height: 200vh;
+    overflow: scroll;
+}
+
+.child-card
+{
+    margin-bottom: 100px;
+    width: 100%;
+    max-height: 40vh;
+    overflow: scroll;
+}

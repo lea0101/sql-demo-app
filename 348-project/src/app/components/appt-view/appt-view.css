@@ -1,0 +1,41 @@
+
+.container
+{
+    margin-left: 8px;
+    margin-bottom: 20px;
+    width: 100%;  
+    display: block;
+    margin-top: 20px;   
+}
+
+.form-f
+{
+    margin-left: 20px;
+}
+
+.cal
+{
+    max-width: 212px;
+}
+mat-card-title
+{
+    margin-bottom: 20px;
+}
+
+button
+{
+    margin-left: 20px;  
+}
+/* mat-form-field
+{
+    max-width: 200px;
+    max-height: 0px;
+    overflow: visible;
+} */
+/* 
+.mat-mdc-form-field-infix
+{
+    font-size: 10px;
+    overflow: visible;
+    max-height: 10px;
+} */

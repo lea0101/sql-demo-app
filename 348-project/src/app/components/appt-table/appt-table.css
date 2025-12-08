@@ -1,0 +1,21 @@
+.header-cell
+{
+}
+
+button
+{
+    font-size: 8px;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+    text-align: left;
+    padding: 2px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.mat-cell,
+.mat-header-cell {
+  overflow: hidden;
+}

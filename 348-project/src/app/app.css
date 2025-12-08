@@ -1,27 +1,48 @@
-main
-{
-    background-color: rgba(165, 147, 164, 0.5);
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    height: 90vh;
-    width: 75vw;
+.container {
+    margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+  border-radius: 16px;
 }
 
-.main-div
-{
-    padding: 15px;
-}
-h6, h4, main
-{  
-    font-family: "Open Sans", sans-serif;
+.content-box {
+  width: 80%;
+  display: block;
+  height: 1000px;
+  background-color: #ffffff;
+
 }
 
-h4
-{
-    font-size: 25px;
+.left-column {
+  width: 20%;
+  padding: 20px;
+  height: 1000px;
+  display: block;
+  float: left;
+  background-color: #417e9faf;
 }
 
-p
+.right-column {
+  width: 70%;
+  max-width: 70%;
+  padding: 20px;
+  height: 1000px;
+}
+
+button
 {
+    margin-top: 20px;
+}
+
+h2
+{
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+mat-card-title
+{
+    font-weight: bold;;
 }

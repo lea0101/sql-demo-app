@@ -3,7 +3,7 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
@@ -13,9 +13,10 @@ import { PhysicianList } from '../components/physicians-list/physicians-list';
 import { AppointmentService } from '../services/appointments.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-report-gen',
-  imports: [ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatOption, MatSelectModule, MatInputModule, MatFormFieldModule, MatTableModule, MatPaginatorModule  ],
+  imports: [ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatOption, MatSelectModule, MatInputModule, MatFormFieldModule, MatTableModule, MatPaginatorModule, MatButton  ],
   templateUrl: './report-gen.html',
   styleUrl: './report-gen.css',
 })
@@ -142,5 +143,17 @@ export class ReportGen implements OnInit {
     {
       Object.keys(value).forEach(function (key){
       });
+    }
+
+     parseDate(value: any)
+    {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      var date = new Date(value);
+      return date.toLocaleString("en-US").substring(0, 10).replaceAll(",", "");
     }
 }

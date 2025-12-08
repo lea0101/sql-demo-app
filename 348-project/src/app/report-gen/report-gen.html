@@ -1,7 +1,7 @@
-<main class="main">
   <div class="container">
     <h4>Filter Appointments</h4>
-    <mat-form-field appearance="outline">
+    <div class="subcontainer">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Filter by Patient</mat-label>
         <mat-select (selectionChange)="patientChange($event)">
             @for (patient of patientList; track patient[0])
@@ -12,9 +12,9 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Filter by Physician</mat-label>
-        <mat-select (selectionChange)="physicianChange($event)" placeholder="appt.physician_name">
+        <mat-select (selectionChange)="physicianChange($event)">
             @for (physician of physicianList; track physician[0])
             {
                 <mat-option [value]="physician[0]">
@@ -23,31 +23,35 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    </div>
+    <div class="subcontainer">
+    <mat-form-field appearance="outline" class="form-f">
         <mat-label>Room Number</mat-label>
         <input matInput placeholder="###" [formControl]="roomIdControl">
     </mat-form-field>
-
-    <mat-form-field>
-        Start Date
+    </div>
+    <div class="subcontainer">
+    <mat-form-field appearance="outline" class="form-f cal">
         <input matInput [matDatepicker]="myDatepicker" [formControl]="startDateControl">
         <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker color="primary"></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-        End Date
+    <h3 style="margin-left: 20px;">to</h3>
+    <mat-form-field appearance="outline" class="form-f cal">
         <input matInput [matDatepicker]="myDatepicker2" [formControl]="endDateControl">
         <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker2 color="primary"></mat-datepicker>
     </mat-form-field>
-    <button type="button" class="btn btn-primary-outline pull-right" (click)="generateReport();">Generate Report</button>    
- </div>
+    </div> 
+    <button mat-raised-button type="button" class="btn btn-primary-outline pull-right" (click)="generateReport();">Generate Report</button>    
+</div>
  @if (reportGenerated)
  {
-  <table mat-table [dataSource]="dataSource">
+<div style="overflow-y:scroll; max-height: 50vh">
+  <table style="overflow: scroll" mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="appt_id">
         <th mat-header-cell *matHeaderCellDef>
-              Appointment Id 
+              Appt. Id
           </th>
         <td mat-cell *matCellDef="let element">
               {{element.appt_id}} 
@@ -74,7 +78,7 @@
 
     <ng-container matColumnDef="room_id">
         <th mat-header-cell *matHeaderCellDef>
-              Room Number 
+              Room No. 
           </th>
         <td mat-cell *matCellDef="let element"> 
               {{ element.room_id }}
@@ -83,10 +87,10 @@
 
     <ng-container matColumnDef="appt_date">
         <th mat-header-cell *matHeaderCellDef>
-              Appointment Date 
+            Date 
           </th>
         <td mat-cell *matCellDef="let element"> 
-              {{ element.appt_date }}
+              {{ parseDate(element.appt_date) }}
           </td>
     </ng-container>
 
@@ -101,5 +105,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
- }
-</main>
+</div> 
+}

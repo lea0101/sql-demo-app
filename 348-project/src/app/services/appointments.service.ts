@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Appointment } from '../models/db.model';
-const baseUrl = 'http://localhost:8080/api/appointments';
+const baseUrl = 'https://express-480420-847180932712.us-east1.run.app/api/appointments';
 
 @Injectable({
   providedIn: 'root'

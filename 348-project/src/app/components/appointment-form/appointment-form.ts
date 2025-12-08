@@ -9,10 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppointmentService } from '../../services/appointments.service';
 import { PatientsList } from '../patients-list/patients-list';
 import { PhysicianList } from '../physicians-list/physicians-list';
+import { MatCardTitle } from '@angular/material/card';
+import { MatButton } from '@angular/material/button';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'appt-form',
-  imports: [ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatOption, MatSelectModule, MatInputModule, MatFormFieldModule  ],
+  imports: [RouterOutlet, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatOption, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardTitle, MatButton  ],
   templateUrl: './appointment-form.html',
   styleUrl: './appointment-form.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -27,6 +30,8 @@ export class AppointmentForm implements OnInit{
 
   patientId: string | undefined;
   physicianId: string | undefined;
+
+  constructor(private router: Router  ) {}
 
   ngOnInit(): void {
     this.patientListProvider.getPatientsList().subscribe(value =>
@@ -66,7 +71,14 @@ export class AppointmentForm implements OnInit{
       "purpose": this.purposeControl.getRawValue(),
       "appt_date": this.dateControl.getRawValue()
     };
-    this.appointmentService.create(appt).subscribe();
-  }
+    this.appointmentService.create(appt).subscribe(_ => this.reloadPage());
+    }
+
+  reloadPage() {
+  // this.router.navigateByUrl('/appointments', { skipLocationChange: true }).then(() => {
+  //   this.router.navigate([this.router.url]);
+  // });
+window.location.reload();
+}
 
 }
