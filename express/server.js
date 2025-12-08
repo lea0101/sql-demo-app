@@ -75,7 +75,6 @@ const { getPhysicianNamesAndIds } = require("./app/controllers/physicians.contro
 db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
-    db.sequelize.query(`SHOW TABLES;`).then(value => console.log(value));
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
