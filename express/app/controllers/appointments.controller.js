@@ -71,7 +71,6 @@ function inputCleaner(input)
   if (typeof input !== 'string') {
     return;
   }
-
   const disallow = ['`', ';', '--', '/*', '*/',' \\', 'x00'];
   let cleaned = input;
   disallow.forEach(token => {
@@ -84,9 +83,8 @@ function inputCleaner(input)
 exports.createAppointment = async (reqBody, res) => {
   try {
     await db.sequelize.query(
-      `INSERT INTO appointments (physician_id, patient_id, room_id, appt_date, purpose) VALUES (${reqBody.physician_id}, ${reqBody.patient_id}, ${reqBody.room_id}, DATE("${reqBody.appt_date.substring(0, 10)}"), "${reqBody.purpose}")`,
+      `INSERT INTO appointments (physician_id, patient_id, room_id, appt_date, purpose) VALUES ('${reqBody.physician_id}', '${reqBody.patient_id}', '${inputCleaner(reqBody.room_id)}', DATE("${reqBody.appt_date.substring(0, 10)}"), '${inputCleaner(reqBody.purpose)}');`,
     );
-    console.log(reqBody);
     res.status(200);
     return;
   }
@@ -99,7 +97,7 @@ exports.createAppointment = async (reqBody, res) => {
 exports.updateAppointment = async (reqBody, res) => {
   try {
     await db.sequelize.query(
-      `UPDATE appointments SET physician_id=${reqBody.physician_id}, patient_id=${reqBody.patient_id}, room_id=${reqBody.room_id}, appt_date=DATE("${reqBody.appt_date.substring(0, 10)}"), purpose="${reqBody.purpose}" WHERE appt_id=${reqBody.appt_id}`
+      `UPDATE appointments SET physician_id=${reqBody.physician_id}, patient_id=${reqBody.patient_id}, room_id=${inputCleaner(reqBody.room_id)}, appt_date=DATE("${reqBody.appt_date.substring(0, 10)}"), purpose="${inputCleaner(reqBody.purpose)}" WHERE appt_id=${reqBody.appt_id};`
     );
     res.status(200);
     return;
